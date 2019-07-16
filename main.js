@@ -6,6 +6,7 @@ var app = new Vue({
         image: './assets/vmSocks-green-onWhite.jpg',
         inventory: 8,
         onSale: true,
+        inStock: true,
         details: ['80% cotton', '20% polyester', 'Gender-neutral'],
         variants: [
             {
@@ -20,7 +21,7 @@ var app = new Vue({
             }
         ],
         cart: 0
-        } ,
+    },
         methods: {
             addToCart() {
                 this.cart += 1

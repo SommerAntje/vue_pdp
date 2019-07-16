@@ -32,7 +32,9 @@
                 <div class="cart">
                     <p>Cart({{cart}})</p>
                 </div>
-                <button v-on:click="addToCart">Add to cart</button>
+                <button v-on:click="addToCart"
+                        :disabled="!inStock"
+                        :class="{disabledButton: !inStock}">Add to cart</button>
             </div>
         </div>
     </div>
