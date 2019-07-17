@@ -3,8 +3,8 @@ var app = new Vue({
     data: {
         brand: 'Vue Mastery',
         product: 'Socks',
+        selectedVariant: 0,
         altText: 'a pair of socks',
-        image: './assets/vmSocks-green-onWhite.jpg',
         inventory: 8,
         onSale: true,
         inStock: true,
@@ -27,16 +27,16 @@ var app = new Vue({
         addToCart() {
             this.cart += 1
         },
-        updateProduct(variantImage) {
-            this.image = variantImage
-        },
-        mouseleave() {
-            this.image = this.variantMaster
+        updateProduct(index) {
+            this.selectedVariant = index
         }
     },
     computed: {
         title() {
             return this.brand + ' ' + this.product
+        },
+        image() {
+            return this.variants[this.selectedVariant].variantImage
         }
     }
 })
