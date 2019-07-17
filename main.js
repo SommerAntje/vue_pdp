@@ -29,6 +29,9 @@ var app = new Vue({
         },
         updateProduct(index) {
             this.selectedVariant = index
+        },
+        mouseleave() {
+            this.selectedVariant = 0
         }
     },
     computed: {
