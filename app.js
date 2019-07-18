@@ -1,4 +1,10 @@
 Vue.component('vc-product', {
+    props: {
+        premium: {
+            type: Boolean,
+            required: true
+        }
+    },
     template: `
         <div class="product">
             <div class="product-image">
@@ -78,6 +84,9 @@ Vue.component('vc-product', {
     }
 })
 
-new Vue({
-    el: '#app'
+var app = new Vue({
+    el: '#app',
+    data: {
+        premium: true
+    }
 })
