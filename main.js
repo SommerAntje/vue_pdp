@@ -5,19 +5,19 @@ var app = new Vue({
         product: 'Socks',
         selectedVariant: 0,
         altText: 'a pair of socks',
-        inventory: 8,
         onSale: true,
-        inStock: true,
         details: ['80% cotton', '20% polyester', 'Gender-neutral'],
         variants: [{
                 variantID: 2234,
                 variantColor: 'green',
-                variantImage: './assets/vmSocks-green-onWhite.jpg'
+                variantImage: './assets/vmSocks-green-onWhite.jpg',
+                variantQuantity: 10
             },
             {
                 variantID: 2235,
                 variantColor: 'blue',
-                variantImage: './assets/vmSocks-blue-onWhite.jpg'
+                variantImage: './assets/vmSocks-blue-onWhite.jpg',
+                variantQuantity: 0
             },
         ],
         variantMaster: './assets/vmSocks-green-onWhite.jpg',
@@ -40,6 +40,9 @@ var app = new Vue({
         },
         image() {
             return this.variants[this.selectedVariant].variantImage
+        },
+        inStock() {
+            return this.variants[this.selectedVariant].variantQuantity
         }
     }
 })
