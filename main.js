@@ -47,9 +47,9 @@ var app = new Vue({
         },
         sale() {
             if (this.variants[this.selectedVariant].variantSale == this.onSale) {
-                return this.brand + ' ' + this.product + ' are on sale!'
+                return this.variants[this.selectedVariant].variantColor + ' ' + this.brand + ' ' + this.product + ' are on sale!'
             }
-            return this.brand + ' ' + this.product + ' are not on sale!'
+            return this.variants[this.selectedVariant].variantColor + ' ' + this.brand + ' ' + this.product + ' are not on sale!'
         }
     }
 })
