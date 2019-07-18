@@ -3,6 +3,10 @@ Vue.component('vc-product', {
         premium: {
             type: Boolean,
             required: true
+        },
+        quantity: {
+            type: Number,
+            required: true
         }
     },
     template: `
@@ -13,8 +17,7 @@ Vue.component('vc-product', {
             <div class="product-info">
                 <h1>{{title}}</h1>
                 <p>Shipping: {{shipping}}</p>
-                <p v-if="inStock > 10">In Stock</p>
-                <p v-else-if="inStock <= 10 && inStock > 0">Almost sold out</p>
+                <p v-if="inStock">In Stock</p>
                 <p v-else>Out of Stock</p>
                 <p>{{sale}}</p>
                 <ul>
@@ -74,7 +77,11 @@ Vue.component('vc-product', {
             return this.variants[this.selectedVariant].variantImage
         },
         inStock() {
-            return this.variants[this.selectedVariant].variantQuantity
+            if (this.quantity > 0) {
+                return true
+            } else {
+                return false
+            }
         },
         sale() {
             if (this.variants[this.selectedVariant].variantSale == this.onSale) {
@@ -96,6 +103,7 @@ Vue.component('vc-product', {
 var app = new Vue({
     el: '#app',
     data: {
-        premium: true
+        premium: true,
+        quantity: true
     }
 })
