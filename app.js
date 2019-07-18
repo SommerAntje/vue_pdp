@@ -12,6 +12,7 @@ Vue.component('vc-product', {
             </div>
             <div class="product-info">
                 <h1>{{title}}</h1>
+                <p>Shipping: {{shipping}}</p>
                 <p v-if="inStock > 10">In Stock</p>
                 <p v-else-if="inStock <= 10 && inStock > 0">Almost sold out</p>
                 <p v-else>Out of Stock</p>
@@ -80,7 +81,15 @@ Vue.component('vc-product', {
                 return this.variants[this.selectedVariant].variantColor + ' ' + this.brand + ' ' + this.product + ' are on sale!'
             }
             return this.variants[this.selectedVariant].variantColor + ' ' + this.brand + ' ' + this.product + ' are not on sale!'
+        },
+        shipping() {
+            if (!this.premium) {
+                return "Free shipping"
+            } else {
+                return 2.99
+            }
         }
+
     }
 })
 
