@@ -17,6 +17,7 @@ Vue.component('vc-product', {
             <div class="product-info">
                 <h1>{{title}}</h1>
                 <p>Shipping: {{shipping}}</p>
+                <p>User is premium: {{premium}}</p>
                 <p v-if="inStock">In Stock</p>
                 <p v-else>Out of Stock</p>
                 <p>{{sale}}</p>
@@ -90,7 +91,7 @@ Vue.component('vc-product', {
             return this.variants[this.selectedVariant].variantColor + ' ' + this.brand + ' ' + this.product + ' are not on sale!'
         },
         shipping() {
-            if (!this.premium) {
+            if (this.premium) {
                 return "Free shipping"
             } else {
                 return 2.99
