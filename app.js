@@ -105,6 +105,6 @@ var app = new Vue({
     el: '#app',
     data: {
         premium: true,
-        quantity: true
+        quantity: 0
     }
 })
