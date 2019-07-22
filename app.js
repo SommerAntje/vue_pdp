@@ -66,7 +66,7 @@ Vue.component('vc-product', {
     },
     methods: {
         addToCart() {
-            this.$emit('add-to-cart')
+            this.$emit('add-to-cart',  this.variants[this.selectedVariant].variantID)
         },
         updateProduct(index) {
             this.selectedVariant = index
@@ -111,11 +111,11 @@ var app = new Vue({
     data: {
         premium: true,
         quantity: 1,
-        cart: 0
+        cart: []
     },
     methods: {
-        updateCart() {
-            this.cart ++
+        updateCart(id) {
+            this.cart.push(id)
         }
     }
 })
