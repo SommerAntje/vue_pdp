@@ -35,9 +35,6 @@ Vue.component('vc-product', {
                 <product-details :details="details"></product-details>
                 <div v-for="(variant, index) in variants" :key="variant.variantId" class="color-box" :style="{backgroundColor: variant.variantColor}" @mouseover="updateProduct(index)" @mouseleave="mouseleave">
                 </div>
-                <div class="cart ">
-                    <p>Cart({{cart}})</p>
-                </div>
                 <button v-on:click="addToCart " :disabled="!inStock " :class="{disabledButton: !inStock} ">Add to cart</button>
             </div>
         </div>
@@ -64,13 +61,12 @@ Vue.component('vc-product', {
                     variantSale: false
                 },
             ],
-            onSale: true,
-            cart: 0
+            onSale: true
         }
     },
     methods: {
         addToCart() {
-            this.cart += 1
+            this.$emit('add-to-cart')
         },
         updateProduct(index) {
             this.selectedVariant = index
@@ -114,6 +110,12 @@ var app = new Vue({
     el: '#app',
     data: {
         premium: true,
-        quantity: 1
+        quantity: 1,
+        cart: 0
+    },
+    methods: {
+        updateCart() {
+            this.cart ++
+        }
     }
 })
