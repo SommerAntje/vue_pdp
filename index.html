@@ -12,7 +12,7 @@
     <div class="nav-bar"></div>
     <div id="app">
         <div class="cart ">
-            <p>Cart({{cart}})</p>
+            <p>Cart({{cart.length}})</p>
         </div>
         <vc-product :premium="premium" :quantity="quantity" @add-to-cart="updateCart"></vc-product>
     </div>
