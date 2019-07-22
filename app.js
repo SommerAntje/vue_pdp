@@ -1,7 +1,9 @@
 Vue.component('product-details', {
     props: {
-        details: Array,
-        reqired: true
+        details: {
+            type: Array,
+            reqired: true
+        }
     },
     template: `<ul>
                 <li v-for="detail in details">{{detail}}</li>
@@ -13,10 +15,6 @@ Vue.component('vc-product', {
     props: {
         premium: {
             type: Boolean,
-            required: true
-        },
-        quantity: {
-            type: Number,
             required: true
         }
     },
@@ -83,11 +81,7 @@ Vue.component('vc-product', {
             return this.variants[this.selectedVariant].variantImage
         },
         inStock() {
-            if (this.quantity > 0) {
-                return true
-            } else {
-                return false
-            }
+          return this.variants[this.selectedVariant].variantQuantity
         },
         sale() {
             if (this.variants[this.selectedVariant].variantSale == this.onSale) {
@@ -110,7 +104,6 @@ var app = new Vue({
     el: '#app',
     data: {
         premium: true,
-        quantity: 1,
         cart: []
     },
     methods: {
