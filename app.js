@@ -10,6 +10,15 @@ Vue.component('product-details', {
             </ul> `
 })
 
+Vue.component('product-review', {
+    template: `<input v-model="name">`,
+    data() {
+        return {
+            name: null
+        }
+    }
+})
+
 
 Vue.component('vc-product', {
     props: {
@@ -33,6 +42,7 @@ Vue.component('vc-product', {
                 <product-details :details="details"></product-details>
                 <div v-for="(variant, index) in variants" :key="variant.variantId" class="color-box" :style="{backgroundColor: variant.variantColor}" @mouseover="updateProduct(index)" @mouseleave="mouseleave">
                 </div>
+                <product-review></product-review>
                 <button v-on:click="addToCart " :disabled="!inStock " :class="{disabledButton: !inStock} ">Add to cart</button>
                 <button v-on:click="clearCart">Clear Cart</button
                 </div>
