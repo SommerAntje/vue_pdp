@@ -20,7 +20,7 @@ Vue.component('product-review', {
 
             <p>
                  <label for="review">Review:</label>
-                 <textarea id="review" v-model="review"></textarea>
+                 <textarea id="review" v-model="review" required></textarea>
             </p>
 
             <p>
