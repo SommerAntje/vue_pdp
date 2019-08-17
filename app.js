@@ -14,7 +14,7 @@ Vue.component('product-review', {
     template: `
         <form class="review-form" @submit.prevent="onSubmit">
 
-            <p v-if="errors.length">
+            <p class="error-box" v-if="errors.length">
                 <b>Please correct the following error(s):</b>
                 <ul>
                     <li v-for="error in errors">{{error}}</li>
@@ -57,6 +57,7 @@ Vue.component('product-review', {
     },   
     methods: {
         onSubmit() {
+            this.errors = []
             if(this.name && this.review && this.rating) {
                 let productReview = {
                     name: this.name,
@@ -68,10 +69,9 @@ Vue.component('product-review', {
                 this.review = null
                 this.rating = null
             } else {
-                console.log(this.rating);
                 if(!this.name) this.errors.push("Name is required!") 
                 if(!this.review) this.errors.push("Review is required!")
-                if(!this.rating) this.erros.push("Rating is required!")
+                if(!this.rating) this.errors.push("Rating is required!")
             }
         }
     }
@@ -105,8 +105,8 @@ Vue.component('vc-product', {
                 <div>
                     <h2>Reviews</h2>
                     <p v-if="!reviews.length">There are no reviews yet.</p>
-                    <ul>
-                        <li v-for="review in reviews">
+                    <ul v-else>
+                        <li v-for="(review, index) in reviews" :key="index">
                             <p>{{ review.name }}</p>
                             <p>Rating: {{ review.rating }} </p>
                             <p>{{ review.review }}</p>

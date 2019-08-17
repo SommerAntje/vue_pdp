@@ -66,6 +66,12 @@
     margin: 40px;
     border: 1px solid #d8d8d8;
   }
+
+  .error-box {
+    padding: 10px;
+    background-color: rgb(229, 167, 151);
+    color: crimson;
+  }
   
   input {
     width: 100%;  
