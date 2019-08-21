@@ -46,10 +46,10 @@ Vue.component('product-review', {
                 Would you recommend this product?
             </p>
                 <label>Yes
-                    <input type="radio" value="yes" v-model="recommend" />
+                    <input type="radio" value="recommend: yes" v-model.value="recommend" />
                 </label>
                 <label>No
-                     <input type="radio" value="no" v-model="recommend" />
+                     <input type="radio" value="recommend: no" v-model.value="recommend" />
                 </label>
             <p>
                 <input type="submit" value="Submit">
@@ -123,6 +123,7 @@ Vue.component('vc-product', {
                             <p>{{ review.name }}</p>
                             <p>Rating: {{ review.rating }} </p>
                             <p>{{ review.review }}</p>
+                            <p>{{ review.recommend }}</p>
                         </li>
                     </ul>
                 </div>
