@@ -11,6 +11,12 @@ Vue.component('product-details', {
 })
 
 Vue.component('product-tabs', {
+    props: {
+        reviews: {
+            type: Array,
+            required: true
+        }
+    },
     template:`
         <div>
             <span class="tab" 
@@ -20,6 +26,21 @@ Vue.component('product-tabs', {
             :key="index">{{ tab }}
             </span>
         </div>
+        <div v-show="selectedTab === 'Reviews'">
+            <p v-if="!reviews.length">There are no reviews yet.</p>
+            <ul v-else>
+                <li v-for="(review, index) in reviews" :key="index">
+                    <p>{{ review.name }}</p>
+                    <p>Rating: {{ review.rating }} </p>
+                    <p>{{ review.review }}</p>
+                    <p>{{ review.recommend }}</p>
+                </li>
+            </ul>
+        </div>
+
+        <product-review  v-show="selectedTab === 'Make a Review'" 
+        @review-submitted="addReview"></product-review>
+
     `,
     data () {
         return {
@@ -136,21 +157,7 @@ Vue.component('vc-product', {
                 <button v-on:click="clearCart">Clear Cart</button>
             </div> 
 
-            <product-tabs></product-tabs> 
-
-            <div>
-                <p v-if="!reviews.length">There are no reviews yet.</p>
-                <ul v-else>
-                    <li v-for="(review, index) in reviews" :key="index">
-                        <p>{{ review.name }}</p>
-                        <p>Rating: {{ review.rating }} </p>
-                        <p>{{ review.review }}</p>
-                        <p>{{ review.recommend }}</p>
-                    </li>
-                </ul>
-            </div>
-
-            <product-review @review-submitted="addReview"></product-review>
+            <product-tabs :reviews="reviews"></product-tabs> 
         </div>
     `,
     data() {
