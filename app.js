@@ -10,6 +10,25 @@ Vue.component('product-details', {
             </ul> `
 })
 
+Vue.component('product-tabs', {
+    template:`
+        <div>
+            <span class="tab" 
+            :class="{activeTab: selectedTab === tab}"
+            v-for="(tab, index) in tabs" 
+            @click="selectedTab = tab" 
+            :key="index">{{ tab }}
+            </span>
+        </div>
+    `,
+    data () {
+        return {
+            tabs: ['Reviews', 'Make a Review'],
+            selectedTab: 'Reviews'
+        }
+    }
+})
+
 Vue.component('product-review', {
     template: `
         <form class="review-form" @submit.prevent="onSubmit">
@@ -115,20 +134,23 @@ Vue.component('vc-product', {
                 </div>
                 <button v-on:click="addToCart " :disabled="!inStock " :class="{disabledButton: !inStock} ">Add to cart</button>
                 <button v-on:click="clearCart">Clear Cart</button>
-                <div>
-                    <h2>Reviews</h2>
-                    <p v-if="!reviews.length">There are no reviews yet.</p>
-                    <ul v-else>
-                        <li v-for="(review, index) in reviews" :key="index">
-                            <p>{{ review.name }}</p>
-                            <p>Rating: {{ review.rating }} </p>
-                            <p>{{ review.review }}</p>
-                            <p>{{ review.recommend }}</p>
-                        </li>
-                    </ul>
-                </div>
-                <product-review @review-submitted="addReview"></product-review>
+            </div> 
+
+            <product-tabs></product-tabs> 
+
+            <div>
+                <p v-if="!reviews.length">There are no reviews yet.</p>
+                <ul v-else>
+                    <li v-for="(review, index) in reviews" :key="index">
+                        <p>{{ review.name }}</p>
+                        <p>Rating: {{ review.rating }} </p>
+                        <p>{{ review.review }}</p>
+                        <p>{{ review.recommend }}</p>
+                    </li>
+                </ul>
             </div>
+
+            <product-review @review-submitted="addReview"></product-review>
         </div>
     `,
     data() {
