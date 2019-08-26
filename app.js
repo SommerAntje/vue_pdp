@@ -12,46 +12,6 @@ Vue.component('product-details', {
             </ul> `
 })
 
-/*
-Vue.component('product-tabs', {
-    props: {
-        reviews: {
-            type: Array,
-            required: true
-        }
-    },
-    template:`
-        <div>
-            <span class="tab" 
-            :class="{activeTab: selectedTab === tab}"
-            v-for="(tab, index) in tabs" 
-            @click="selectedTab = tab" 
-            :key="index">{{ tab }}
-            </span>
-        </div>
-        <div v-show="selectedTab === 'Reviews'">
-            <p v-if="!reviews.length">There are no reviews yet.</p>
-            <ul v-else>
-                <li v-for="(review, index) in reviews" :key="index">
-                    <p>{{ review.name }}</p>
-                    <p>Rating: {{ review.rating }} </p>
-                    <p>{{ review.review }}</p>
-                    <p>{{ review.recommend }}</p>
-                </li>
-            </ul>
-        </div>
-        <div v-show="selectedTab === 'Make a Review'">
-            <product-review></product-review>
-        </div>
-    `,
-    data () {
-        return {
-            tabs: ['Reviews', 'Make a Review'],
-            selectedTab: 'Reviews'
-        }
-    }
-}) */
-
 Vue.component('product-tabs', {
     props: {
       reviews: {
